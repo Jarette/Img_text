@@ -10,13 +10,13 @@ import (
 )
 
 // Screen_text displays colored text to the screen
-func Screen_text() {
-	fmt.Println("\033[31mRed text\033[0m")
-	fmt.Println("\033[32mGreen text\033[0m")
+func Screen_text(text string) {
+	fmt.Printf("\033[31m %s\033[0m",text)
+	fmt.Printf("\033[32m %s\033[0m",text)
 }
 
 // Color_imgtext prints a colored text image to the screen
-func Color_imgtext() {
+func Color_imgtext(text string) {
 	const W = 500
 	const H = 300
 
@@ -41,7 +41,7 @@ func Color_imgtext() {
 	dc.Clear()
 
 	dc.SetRGB(.5, 0, 0)
-	dc.DrawStringAnchored("Hello, world!", W/2, H/2, 0.5, 0.5)
+	dc.DrawStringAnchored(text, W/2, H/2, 0.5, 0.5)
 	dc.Stroke()
 
 	dc.SavePNG("hello.png")
