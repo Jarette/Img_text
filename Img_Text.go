@@ -1,11 +1,36 @@
+/*****************************************************************************
+*                    
+*  Author:           Jarette Greene
+*  Email:            jkgreene0406@my.msutexas.edu / jarettegreene09@gmail.com
+*  Label:            P03
+*  Title:			 Image Ascii Art           
+*  Course:           CMPS 4143
+*  Semester:         Fall 2023
+* 
+*  Description:
+*	
+*		This Package contains functions that create colored text
+*
+* 
+*  Usage:
+*    - import to main.go file 
+* 
+*  Files           
+*       N/A 
+*****************************************************************************/
 package Img_text
-
+//necessary packages 
 import (
+	//fmt : allows for input and output from and to the console
 	"fmt"
 	"io/ioutil"
+	//os : allows to check if a error occurs when getting a file 
 	"os"
 
+	// github.com/fogleman/gg : allows for basic image manipulation 
 	"github.com/fogleman/gg"
+
+	// golang.org/x/image/font/gofont/goregular: allows for access to different text fonts in go 
 	"golang.org/x/image/font/gofont/goregular"
 )
 
@@ -25,8 +50,10 @@ func Color_imgtext(text string) {
 	if err != nil {
 		panic(err)
 	}
+	//defers this call to the end of the of the program 
 	defer os.Remove(tempFile.Name())
 
+	//checking for error in the writing the font
 	if _, err := tempFile.Write(goregular.TTF); err != nil {
 		panic(err)
 	}
@@ -43,7 +70,7 @@ func Color_imgtext(text string) {
 	dc.SetRGB(.5, 0, 0)
 	dc.DrawStringAnchored(text, W/2, H/2, 0.5, 0.5)
 	dc.Stroke()
-
+	// final name of the image file created 
 	dc.SavePNG("hello.png")
 
 }
